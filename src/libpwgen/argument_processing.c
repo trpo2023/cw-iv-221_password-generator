@@ -18,3 +18,65 @@ void check_len_quantity(char *argv[], int argc, int *len, int *quantity)
     }
 }
 
+char *pool_assembling(char *argv[], int argc)
+{
+    int SymbCount = 0;
+    char *pool = malloc(128 * sizeof(char));
+    int NoLet = 0;
+    int NoNum = 0;
+    int NoUp = 0;
+    char numbers[] = "0123456789";
+    char allletter[] = "abcdefghijklmnoqprstuvwyzxABCDEFGHIJKLMNOQPRSTUYWVZX";
+    char letter[] = "abcdefghijklmnoqprstuvwyzx";
+    char symbols[] = "!#$&'()*+,/:;<=>?@[]^_{|}~`";
+    for (int i = 0; i < argc; i++)
+    {
+        if (strcmp(argv[i], "-y") == 0)
+        {
+            for (int i = 0; i < strlen(symbols); i++)
+            {
+                pool[SymbCount] = symbols[i];
+                SymbCount++;
+            }
+        }
+
+        if (strcmp(argv[i], "-N") == 0)
+        {
+            NoLet++;
+        }
+        if (strcmp(argv[i], "-A") == 0)
+        {
+            NoUp++;
+        }
+        if (strcmp(argv[i], "-0") == 0)
+        {
+            NoNum++;
+        }
+    }
+
+    if (NoUp == 1)
+    {
+        for (int i = 0; i < strlen(letter); i++)
+        {
+            pool[SymbCount] = letter[i];
+            SymbCount++;
+        }
+    }
+    else if (NoLet == 0)
+    {
+        for (int i = 0; i < strlen(allletter); i++)
+        {
+            pool[SymbCount] = allletter[i];
+            SymbCount++;
+        }
+    }
+    if (NoNum == 0)
+    {
+        for (int i = 0; i < strlen(numbers); i++)
+        {
+            pool[SymbCount] = numbers[i];
+            SymbCount++;
+        }
+    }
+    return pool;
+}
