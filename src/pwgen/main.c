@@ -12,5 +12,15 @@ int main(int argc, char *argv[])
             return 0;
         }
     }
+    if (argc < 3)
+    {
+        printf("Not enough arguments!\nTo know more about arguments, type 'pwgen -h'\n");
+        return 0;
+    }
+    if (argc > 7)
+    {
+        printf("Too many arguments!\nTo know more about arguments, type 'pwgen -h'\n");
+        return 0;
+    }
     return 0;
 }
