@@ -80,3 +80,15 @@ char *pool_assembling(char *argv[], int argc)
     }
     return pool;
 }
+
+void generator(char *pool, int len, int quantity)
+{
+    for (int i = 0; i < quantity; i++)
+    {
+        for (int j = 0; j < len; j++)
+        {
+            printf("%c", pool[rand() % (strlen(pool))]);
+        }
+        printf("\n");
+    }
+}
