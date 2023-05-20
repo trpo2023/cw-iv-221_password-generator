@@ -4,3 +4,4 @@
 #include <string.h>
 
 void check_len_quantity(char *argv[], int argc, int *len, int *quantity);
+char *pool_assembling(char *argv[], int argc);
