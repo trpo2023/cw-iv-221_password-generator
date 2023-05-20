@@ -1,10 +1,12 @@
 #include <stdio.h>
+#include <time.h>
 #include <string.h>
-#include "argument_processing.h"
+#include <libpwgen/argument_processing.h>
 
 
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
     for (int i = 1; i < argc; i++)
     {
         if (strcmp(argv[i], "-h") == 0)
