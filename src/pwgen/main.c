@@ -23,7 +23,12 @@ int main(int argc, char *argv[])
         printf("Too many arguments!\nTo know more about arguments, type 'pwgen -h'\n");
         return 0;
     }
+
     int len = 0; int quantity = 0;
     check_len_quantity(argv, argc, &len, &quantity);
+    char *pool = pool_assembling(argv, argc);
+    generator(pool, len, quantity);
+
+    free(pool);
     return 0;
 }
