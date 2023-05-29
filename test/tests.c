@@ -17,22 +17,65 @@
 // }
 
 
-// CTEST(argument_processing, pool_assembling)
-// {
-//     // Given
-//     char *argv[] = {"./bin/pwgen","10","2","-y", "-N", "-A", "-0"};
-//     int argc = 7;
-//     // char *first = "-y";
-//     // char *second = "-N";
-//     // char *third = "-A";
-//     // char *forth = "-0";
+CTEST(argument_processing, pool_assembling_1)
+{
+    // Given
+    char *argv[] = {"./bin/pwgen","10","2","-y"};
+    int argc = 4;
     
-//     // When
-//     char *result = pool_assembling(argv,argc);
-//     // Then
-//     char symbols[] = "!#$&'()*+,/:;<=>?@[]^_{|}~`";
-//     ASSERT_EQUAL(symbols, result);
-// }
+    // When
+    char *result = pool_assembling(argv,argc);
+    // Then
+    char *symbols= "!#$&'()*+,/:;<=>?@[]^_{|}~`abcdefghijklmnoqprstuvwyzxABCDEFGHIJKLMNOQPRSTUYWVZX0123456789";
+    for(int i =0;i<strlen(result);i++){
+        ASSERT_EQUAL(symbols[i], result[i]);
+    }
+}
+
+CTEST(argument_processing, pool_assembling_2)
+{
+    // Given
+    char *argv[] = {"./bin/pwgen","10","2","-N"};
+    int argc = 4;
+    
+    // When
+    char *result = pool_assembling(argv,argc);
+    // Then
+    char *symbols= "0123456789";
+    for(int i =0;i<strlen(result);i++){
+        ASSERT_EQUAL(symbols[i], result[i]);
+    }
+}
+
+CTEST(argument_processing, pool_assembling_3)
+{
+    // Given
+    char *argv[] = {"./bin/pwgen","10","2","-0"};
+    int argc = 4;
+    
+    // When
+    char *result = pool_assembling(argv,argc);
+    // Then
+    char *symbols= "abcdefghijklmnoqprstuvwyzxABCDEFGHIJKLMNOQPRSTUYWVZX";
+    for(int i =0;i<strlen(result);i++){
+        ASSERT_EQUAL(symbols[i], result[i]);
+    }
+}
+
+CTEST(argument_processing, pool_assembling_4)
+{
+    // Given
+    char *argv[] = {"./bin/pwgen","10","2","-A"};
+    int argc = 4;
+    
+    // When
+    char *result = pool_assembling(argv,argc);
+    // Then
+    char *symbols= "abcdefghijklmnoqprstuvwyzx0123456789";
+    for(int i =0;i<strlen(result);i++){
+        ASSERT_EQUAL(symbols[i], result[i]);
+    }
+}
 
 CTEST(argument_processing, check_len_quantity_1)
 {
